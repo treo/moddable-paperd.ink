@@ -37,6 +37,7 @@
 
 #if ESP32
 	#include "driver/spi_common.h"
+	#include "driver/gpio.h"
 #endif
 
 struct SPIRecord {
@@ -178,6 +179,19 @@ void xs_spi_constructor(xsMachine *the)
 	spi->config.miso_pin = miso;
 
 	modSPIInit(&spi->config);
+#if ESP32
+	// The SD-card spec (and most SPI slaves with open-drain-ish MISO
+	// conventions) assumes the HOST keeps MISO high while the slave
+	// tri-states it between responses; boards may omit the external pull-up
+	// and the ESP32 pads default to no pull, leaving an un-driven MISO to
+	// float low and read as 0x00 - indistinguishable from a legitimate
+	// "accepted" response byte. The weak internal pull-up (~45k) matches the
+	// spec-recommended host behavior and is harmless where an external one
+	// exists. Pad pull configuration is independent of the GPIO-matrix/IOMUX
+	// routing the SPI driver chose, so setting it after init persists.
+	if (kInvalidPin != miso)
+		gpio_pullup_en((gpio_num_t)miso);
+#endif
 	spi->doUninit = true;
 
 	if (kInvalidPin != select)
