@@ -1,0 +1,11 @@
+{
+	"modules": {
+		"deepSleep": "./*"
+	},
+	"platforms": {
+		"esp32": {},
+		"...": {
+			"error": "deepSleep is an ESP32 module"
+		}
+	}
+}
