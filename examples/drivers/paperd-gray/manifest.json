@@ -1,0 +1,27 @@
+{
+	"include": [
+		"$(MODDABLE)/examples/manifest_base.json",
+		"$(MODDABLE)/examples/manifest_commodetto.json"
+	],
+	"modules": {
+		"*": "./main"
+	},
+	"preload": [
+		"main"
+	],
+	"resources": {
+		"*-mask": [
+			"$(MODDABLE)/examples/assets/fonts/OpenSans-Regular-52",
+			"$(MODDABLE)/examples/assets/fonts/OpenSans-Regular-18"
+		]
+	},
+	"platforms": {
+		"esp32/paperd_classic": {},
+		"lin/paperd_classic": {},
+		"mac/paperd_classic": {},
+		"win/paperd_classic": {},
+		"...": {
+			"error": "Platform not supported - paperd_classic only"
+		}
+	}
+}
