@@ -298,7 +298,7 @@ class Display {
       this.#dither.close();
       let algorithm = options.dither;
       if (false === algorithm) algorithm = "none";
-      else if (true === algorithm) algorithm = undefined;
+      else if (true === algorithm) algorithm = "atkinson"; // default; an undefined slot is rejected as an invalid name
       this.#dither = new Dither({ width: WIDTH, algorithm });
     }
   }

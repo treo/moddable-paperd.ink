@@ -298,7 +298,7 @@ class Display {		// implementation of PixelsOut
 			if (false === algorithm)
 				algorithm = "none";
 			else if (true === algorithm)
-				algorithm = undefined	// default
+				algorithm = "atkinson"	// default; the native constructor rejects an undefined algorithm slot
 			this.#dither = new Dither({width: 200, algorithm});
 		}
 	}
