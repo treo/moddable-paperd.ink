@@ -1,0 +1,26 @@
+{
+	"modules": {
+		"*": [
+			"../modules/control",
+			"../modules/button",
+			"./peripherals",
+			"./host"
+		],
+		"commodetto/Dither": "$(MODDABLE)/modules/commodetto/commodettoDither",
+		"deepSleep": "./deepSleep",
+		"resetReason": "./resetReason",
+		"sdcard": "./sdcard",
+		"setup/screen": "./screen"
+	},
+	"preload": [
+		"control",
+		"button",
+		"peripherals",
+		"host",
+		"commodetto/Dither",
+		"setup/screen"
+	],
+	"config": {
+		"format": "Gray256"
+	}
+}
