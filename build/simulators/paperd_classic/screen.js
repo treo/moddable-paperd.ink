@@ -134,6 +134,11 @@ class ScreenEmulator {
 	// message and input plumbing, delegated to the host screen
 	get context() { return real.context; }
 	set context(value) { real.context = value; }
+	// the host's idle pump reads globalThis.screen.when (set by the native
+	// start/stop on the real screen); without delegating it, Piu's idle-draw
+	// loop never runs against this emulator
+	get when() { return real.when; }
+	set when(value) { real.when = value; }
 	get onMessage() { return real.onMessage; }
 	set onMessage(value) { real.onMessage = value; }
 	get focus() { return real.focus; }
