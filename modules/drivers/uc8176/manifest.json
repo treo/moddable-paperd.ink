@@ -1,0 +1,12 @@
+{
+	"include": [
+		"$(COMMODETTO)/manifest_bitmap.json",
+		"$(COMMODETTO)/manifest_dither.json"
+	],
+	"modules": {
+		"uc8176": "$(MODULES)/drivers/uc8176/uc8176"
+	},
+	"preload": [
+		"uc8176"
+	]
+}
